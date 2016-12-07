@@ -12,22 +12,29 @@ $(function() {
     
     function addCourses(courses){
         courses.forEach(function(course){
-            var courseElement = $("<div>");
-            var courseTitle = $("<h3>");
-            var courseImg = $("<img>");
-            var courseLink = $("<a>");
-            courseLink.attr("href", course.url);
-            courseLink.attr("target", "_blank");
-            courseLink.addClass("btn btn-primary");
-            courseLink.text("See Course");
-            courseImg.attr("src", course.badge);
-            courseTitle.text(course.title);
-            courseElement.className("course");
-            courseElement.append(courseTitle);
-            courseElement.append(courseImg);
-            courseElement.append(courseLink);
-            $("#badges").append(courseElement);
-        })
+            
+           var $badges = $("#badges");
+            
+           var $course =  $("<div />", {
+                "class": "course"
+            }).appendTo($badges);
+            
+            $("<h3 />", {
+                text: course.title,
+            }).appendTo($course);
+            
+            $("<img />", {
+                src: course.badge,
+            }).appendTo($course);
+            
+            $("<a />", {
+                href: course.url,
+                target: "_blank",
+                text: "See Course",
+                "class": "btn btn-primary"
+            }).appendTo($course);
+            
+        });
     }
 
 });
